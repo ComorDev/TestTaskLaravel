@@ -6,7 +6,24 @@
     <br/>
     @foreach($model->getFillable() as $field)
         {{$model::getNames()[$field]}}
-        <input name="{{$field}}" value="{{$model->$field}}">
+
+        @php
+            $fieldType = $model::getFieldTypes()[$field];
+        @endphp
+
+        @if(!is_array($fieldType))
+            <input type="{{ $fieldType }}" name="{{$field}}" value="{{$model->$field}}">
+        @else
+
+            @include('crud.components.' . $fieldType['type'], [
+                'field' => $field,
+                'classModel' => $model,
+                'route' => $route,
+                'fieldType' => $fieldType,
+                'value' => $model->$field
+                ])
+        @endif
+
         <br/>
     @endforeach
 

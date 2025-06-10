@@ -32,7 +32,7 @@ abstract class AbstractCrudController
         $route = $this->route;
 
         $model = $this->model::query()
-            ->find($modelId)->firstOrFail();
+            ->find($modelId);
 
         return view("crud.show", compact(
             'model',
@@ -54,8 +54,6 @@ abstract class AbstractCrudController
 
     public function store(Request $request)
     {
-
-
         $validatedData = $this->validateRequest($request, $this->requestStore);
 
         $this->model::query()->create($validatedData);
@@ -68,7 +66,7 @@ abstract class AbstractCrudController
         $route = $this->route;
 
         $model = $this->model::query()
-            ->find($modelId)->firstOrFail();
+            ->find($modelId);
 
         return view("crud.edit", compact(
             'model',
