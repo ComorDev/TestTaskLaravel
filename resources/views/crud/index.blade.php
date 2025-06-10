@@ -1,5 +1,5 @@
 <table class="table">
-    <td><a href="{{ route('categories.create') }}">Создать</a></td>
+    <td><a href="{{ route($route . '.create') }}">Создать</a></td>
     <thead>
     <tr>
         <th scope="col">{{ $classModel::getNames()['id'] }}</th>
