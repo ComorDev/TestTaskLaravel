@@ -12,7 +12,7 @@ class StoreUpdateProductRequest extends FormRequest
             'name' => ['required', 'string', 'max:255', 'min:1'],
             'description' => ['string', 'nullable'],
             'price' => ['required', 'decimal:2'],
-            'category_ids' => ['required', 'array'],
+            'categories' => ['required', 'array'],
         ];
     }
 }

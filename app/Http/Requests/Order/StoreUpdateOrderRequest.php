@@ -12,7 +12,7 @@ class StoreUpdateOrderRequest extends FormRequest
             'fio' => ['string', 'required', 'max:255', 'min:1'],
             'status' => ['string', 'required'],
             'comment' => ['string', 'nullable'],
-            'product_ids' => ['required', 'array'],
+            'product_id' => ['required', 'exists:products,id'],
         ];
     }
 }

@@ -1,6 +1,7 @@
 @php
     $modelClass = $fieldType['model'] ?? null;
     $text = $fieldType['text'] ?? '';
+    $valAttr = $fieldType['value'] ?? '';
     $attributes = $attributes ?? [];
     $optionAttributes = $attributes['option'] ?? [];
 
@@ -12,17 +13,34 @@
     }
 @endphp
 
-<select name="{{$field}}">
-    @foreach($options as $key => $val)
+@if($modelClass == null)
+    <select name="{{$field}}">
+        @foreach($options as $key => $val)
 
-        <option
-        @foreach($optionAttributes as $k => $v)
-            {{$k}}="{{$v}}"
+            <option
+            @foreach($optionAttributes as $k => $v)
+                {{$k}}="{{$v}}"
+            @endforeach
+            @if($value == $key)
+                selected
+            @endif value="{{ $key }}">
+            {{ $val }}
+            </option>
         @endforeach
-        @if($value == $key)
-            selected
-        @endif value="{{ $key }}">
-        {{ $val }}
-        </option>
-    @endforeach
-</select>
+    </select>
+@else
+    <select name="{{$field}}">
+        @foreach($modelClass::all() as $model)
+
+            <option
+            @foreach($optionAttributes as $k => $v)
+                {{$k}}="{{$v}}"
+            @endforeach
+            @if($value == $model->$valAttr)
+                selected
+            @endif value="{{ $model->$valAttr }}">
+            {{ $model->$text }}
+            </option>
+        @endforeach
+    </select>
+@endif

@@ -14,11 +14,10 @@ class Product extends AbstractModel
         'name',
         'description',
         'price',
-        'category_ids'
     ];
 
     protected $casts = [
-        'category_ids' => 'array',
+        'categories' => 'array',
     ];
 
     public $timestamps = false;
@@ -28,7 +27,7 @@ class Product extends AbstractModel
         'name' => 'Название',
         'description' => 'Описание',
         'price' => 'Цена',
-        'category_ids' => 'Категории'
+        'categories' => 'Категории'
     ];
 
     protected static $showOnIndexPage = [
@@ -40,7 +39,7 @@ class Product extends AbstractModel
         'name',
         'description',
         'price',
-        'category_ids',
+        'categories',
     ];
 
     protected static $fieldTypes = [
@@ -53,7 +52,7 @@ class Product extends AbstractModel
                 'min' => '0'
             ]
         ],
-        'category_ids' => [
+        'categories' => [
             'type' => 'select-multiple',
             'model' => Category::class,
             'value' => 'id',
@@ -65,6 +64,11 @@ class Product extends AbstractModel
 
     public function categories()
     {
-        return Category::whereIn('id', $this->category_ids)->get();
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'product_id');
     }
 }

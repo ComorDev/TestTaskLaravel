@@ -32,4 +32,9 @@ class Category extends AbstractModel
     protected static $fieldTypes = [
         'name' => 'text',
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }

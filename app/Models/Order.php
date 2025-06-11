@@ -18,12 +18,8 @@ class Order extends AbstractModel
         'fio',
         'status',
         'comment',
-        'product_ids',
+        'product_id',
         'created_at'
-    ];
-
-    protected $casts = [
-        'product_ids' => 'array'
     ];
 
 
@@ -32,7 +28,7 @@ class Order extends AbstractModel
         'fio' => 'ФИО',
         'status' => 'Статус',
         'comment' => 'Комментарий',
-        'product_ids' => 'Товары',
+        'product_id' => 'Товары',
         'created_at' => 'Создано'
     ];
 
@@ -45,7 +41,7 @@ class Order extends AbstractModel
         'fio',
         'status',
         'comment',
-        'product_ids',
+        'product_id',
         'created_at'
     ];
 
@@ -59,8 +55,8 @@ class Order extends AbstractModel
             ]
         ],
         'comment' => 'text',
-        'product_ids' => [
-            'type' => 'select-multiple',
+        'product_id' => [
+            'type' => 'select',
             'model' => Product::class,
             'value' => 'id',
             'text' => 'name',
@@ -74,14 +70,11 @@ class Order extends AbstractModel
         ]
     ];
 
-
-    public function getStatuses()
+    public function product()
     {
-        return [
-            self::STATUS_NEW => 'Новый',
-            self::STATUS_COMPLETE => 'Завершен'
-        ];
+        return $this->belongsTo(Product::class);
     }
+
 
 }
 
