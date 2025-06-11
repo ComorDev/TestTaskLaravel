@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CRUD\Category\CategoryController;
+use App\Http\Controllers\CRUD\Order\OrderController;
 use App\Http\Controllers\CRUD\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,4 @@ Route::get('/', [App\Http\Controllers\MainController::class, 'index'])->name('in
 
 Route::resource("categories", CategoryController::class);
 Route::resource("products", ProductController::class);
+Route::resource("orders", OrderController::class);

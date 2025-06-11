@@ -63,8 +63,8 @@ class Product extends AbstractModel
     ];
 
 
-    public function category()
+    public function categories()
     {
-        return $this->hasMany(Category::class);
+        return Category::whereIn('id', $this->category_ids)->get();
     }
 }

@@ -392,7 +392,7 @@
         <a href="{{ route('categories.index') }}"
            class="text-sm text-gray-700 dark:text-gray-500 underline">Категории</a>
         <a href="{{ route('products.index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Товары</a>
-        <a href="{{ route('index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Заказы</a>
+        <a href="{{ route('orders.index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Заказы</a>
     </div>
 </div>
 </body>
